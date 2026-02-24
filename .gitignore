@@ -1,0 +1,25 @@
+.VirtualBox/
+        .cache/
+        .cagent/
+        .claude.json
+        .claude.json.backup.1770493354450
+        .claude.json.backup.1770493354561
+        .claude.json.backup.1770493354717
+        .claude.json.backup.1770493354760
+        .claude.json.backup.1770493355086
+        .claude/
+        .config/
+        .copilot/
+        .docker/
+        .dotnet/
+        .freemind/
+        .nuget/
+        .vscode/
+        Documents/
+        MyFirstRepo/
+        New folder/
+        VirtualBox VMs/
+        ntuser.ini
+        source/
+        sysem_engineering-devops/
+        system_engineering-devops/
