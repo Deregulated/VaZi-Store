@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaZi - Online Apparel Store</title>
+    
+    <!-- Google Fonts -->
+      <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== CSS VARIABLES (THEME) ========== */
+        :root {
+            /* Colors */
+            --primary-color: #0a0a0a;      /* Deep black */
+            --secondary-color: #f5f5f5;    /* Off-white */
+            --accent-color: #ff3366;        /* Electric pink */
+            --accent-hover: #e62958;        /* Darker pink */
+            --text-light: #666666;           /* Light gray text */
+            --white: #ffffff;
+            --light-bg: #f9f9f9;
+            --border-color: #eaeaea;
+            
+            /* Fonts */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Work Sans', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 6rem 2rem;
+            --container-width: 1200px;
+            
+            /* Transitions */
+            --transition-smooth: all 0.3s ease;
+        }
+
+        /* ========== RESET & BASE STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .accent {
+            color: var(--accent-color);
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition-smooth);
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--accent-color);
+        }
+
+        /* ========== HERO SECTION ========== */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a1a1a 100%);
+            color: var(--white);
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content .btn {
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+        }
+
+        /* ========== SECTIONS ========== */
+        section {
+            padding: var(--section-padding);
+        }
+
+        #about, #gallery, #team, #faq {
+            background: var(--white);
+        }
+
+        #about {
+            background: var(--secondary-color);
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        /* ========== GALLERY SECTION ========== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* ========== TEAM SECTION ========== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ceo-card {
+            border: 2px solid var(--accent-color);
+            grid-column: span 2;
+        }
+
+        .card-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content .position {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .ceo-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        /* ========== FAQ SECTION ========== */
+        .faq-section {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .faq-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-color);
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-bg);
+        }
+
+        .faq-question h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin: 0;
+            flex: 1;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent-color);
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            padding: 0 1.5rem;
+            background: var(--light-bg);
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 1rem 1.5rem;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .faq-cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            border-radius: 12px;
+            color: var(--white);
+        }
+
+        .faq-cta h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .faq-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .faq-cta .btn {
+            background: var(--white);
+            color: var(--primary-color);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .faq-cta .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        #contact {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-family: var(--font-body);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+            
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 4rem 1.5rem;
+            }
+
+            .main-nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ceo-card {
+                grid-column: span 1;
+            }
+
+            .faq-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .faq-category {
+                padding: 1.5rem;
+            }
+
+            .faq-cta {
+                padding: 2rem;
+            }
+
+            .faq-cta h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-question h4 {
+                font-size: 0.9rem;
+            }
+            
+            .faq-answer p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========== UTILITY CLASSES ========== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+   <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">VaZi</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked <span class="accent">Questions</span></h2>
+                <p class="section-subtitle">Everything you need to know about VaZi</p>
+            </div>
+            
+            <div class="faq-container">
+                <!-- FAQ Category: Orders & Shipping -->
+                <div class="faq-category">
+                    <h3 class="category-title">Orders & Shipping</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How long does shipping take?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Domestic shipping typically takes 3-5 business days. </p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How can I track my order?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once your order ships, you'll receive a confirmation email with a tracking number. You can also track your order by logging into your account and viewing your order history.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Category: Returns & Exchanges -->
+                <div class="faq-category">
+                    <h3 class="category-title">Returns & Exchanges</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>What is your return policy?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a 30-day return policy for unworn, unwashed items with original tags attached. Simply initiate a return through your account or contact our customer service team.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>When will I get my refund?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once we receive your return, we'll process the refund within 3-5 business days. The amount will be credited to your original payment method. Your bank may take additional 3-5 business days to post the refund.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I exchange an item?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>For exchanges, please return the original item for a refund and place a new order for the desired size/color. This ensures you get your new item as quickly as possible.</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                <!-- FAQ Category: Sizing & Fit -->
+                <div class="faq-category">
+                    <h3 class="category-title">Sizing & Fit</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How do I find my size?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Check our detailed size guide on each product page. We recommend measuring yourself and comparing with our size chart. If you're between sizes, consider your preferred fit - size up for relaxed, size down for fitted.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>Are your clothes true to size?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Most VaZi items run true to size based on standard US sizing. However, some styles may have specific fit notes - these are always mentioned in the product description.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Category: Product Care -->
+                <div class="faq-category">
+                    <h3 class="category-title">Product Care</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How should I wash my VaZi clothes?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Always check the care label inside each garment. Generally, we recommend washing in cold water and hanging to dry to maintain quality and extend the life of your clothes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>Do you offer sustainable products?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We're committed to sustainability. Many of our items use organic cotton, recycled materials, or eco-friendly production processes. Look for the "Sustainable" tag on product pages.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Category: Account & Payment -->
+                <div class="faq-category">
+                    <h3 class="category-title">Account & Payment</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>What payment methods do you accept?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit cards (Visa, Mastercard), airtel money and M-pesa for  payments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>Is my payment information secure?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. We use industry-standard SSL encryption to protect your data. We never store your full payment details on our servers.</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                <!-- FAQ Category: Contact & Support -->
+                <div class="faq-category">
+                    <h3 class="category-title">Contact & Support</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>How can I contact customer service?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can reach us via email at support@vazi.com, through our contact form, or via live chat Monday-Friday 9am-6pm EST. We aim to respond within 24 hours.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h4>Do you have a physical store?</h4>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Currently, VaZi operates exclusively online. This allows us to offer competitive prices and serve customers worldwide. Follow us on social media for pop-up shop announcements!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Still Have Questions CTA -->
+            <div class="faq-cta">
+                <h3>Still have questions?</h3>
+                <p>Can't find what you're looking for? Reach out to our support team.</p>
+                <a href="#contact" class="btn btn-primary nav-link">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="content-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>VaZi</h3>
+                    <p>Define Your Style</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#home">HOME</a>
+                    <a href="index.html#about">ABOUT US</a>
+                    <a href="index.html#gallery">Gallery</a>
+                    <a href="index.html#contact">CONTACT US</a>
+                    
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2026 VaZi. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update URL without jumping
+                history.pushState(null, null, targetId);
+            });
+        });
+
+        // Active link highlighting on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            // Find the parent FAQ item
+            const faqItem = element.closest('.faq-item');
+            
+            // Toggle active class
+            faqItem.classList.toggle('active');
+            
+            // Update icon
+            const icon = element.querySelector('.faq-icon');
+            if (faqItem.classList.contains('active')) {
+                icon.textContent = '−'; // Minus sign
+            } else {
+                icon.textContent = '+'; // Plus sign
+            }
+        }
+
+        // Initialize FAQ to have all closed by default
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure all FAQ answers are hidden on load
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('.faq-icon');
+                if (icon) icon.textContent = '+';
+            });
+        });
+
+        // Scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply to elements that should animate on scroll
+        document.querySelectorAll('.team-card, .gallery-item, .faq-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
