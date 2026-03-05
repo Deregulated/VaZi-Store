@@ -5,39 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Director Profile - VaZi</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="profile-page">
-
+<body class="profile-page director-profile">
+    
     <header class="profile-header">
         <div class="logo">VaZi</div>
     </header>
 
-    <main class="profile-container">
+    <div class="profile-container">
         <div class="profile-main">
             
+            <!-- IMAGE SECTION -->
             <div class="profile-image-wrapper">
                 <div class="profile-image">
-                    <span>Profile Photo Placeholder</span>
+                    <!-- Replace with your actual image path -->
+                    <img src="../images/derek.jpg" alt="Derek - Director at VaZi" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
+            <!-- NAME SECTION -->
             <h1 class="profile-name">
-                Director Name
+                Derek
             </h1>
-            
-            <div class="profile-role">
-                Director
-            </div>
 
+            <!-- ROLE/TITLE SECTION -->
+            <p class="profile-role">
+                Director of Technology & Cybersecurity
+            </p>
+
+            <!-- BIOGRAPHY SECTION -->
             <div class="profile-bio">
-                <p>Insert a brief, professional biography here. Describe the director's background, their role at VaZi, and their vision for the brand's future.</p>
-                <p>Add a second paragraph expanding on their industry experience and unique expertise.</p>
+                <p>
+                    Derek is a Software Engineer and cybersecurity specialist passionate about building secure, scalable, and intelligent digital systems. With a strong technical foundation in software development, systems architecture, and security engineering, he brings both innovation and discipline to every project he leads.
+                </p>
+
+                <p>
+                    As Director of Technology at VaZi, Derek oversees the company’s technical strategy, infrastructure design, and cybersecurity framework. He is responsible for ensuring that all digital platforms are resilient, efficient, and aligned with VaZi’s long-term vision. His leadership focuses on combining technical excellence with practical execution.
+                </p>
+
+                <p>
+                    Derek has experience working on complex systems including API integrations, database design, intelligent systems, and secure application architecture. His expertise spans backend development, web technologies, data structures, and security analysis — allowing him to approach challenges from both a development and risk perspective.
+                </p>
+
+                <p>
+                    Beyond technical execution, Derek believes in continuous growth, innovation, and strategic thinking. His philosophy centers on building technology that not only works — but lasts, scales, and protects. He is committed to driving VaZi forward through disciplined engineering and forward-looking cybersecurity practices.
+                </p>
             </div>
 
-            <a href="javascript:window.close();" class="back-link">← Close Profile</a>
+            <!-- AREAS OF EXPERTISE -->
+            <div class="profile-section">
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li>Cybersecurity Strategy & Risk Assessment</li>
+                    <li>Secure Software Development</li>
+                    <li>API Integration & Systems Architecture</li>
+                    <li>Database Design & Optimization</li>
+                    <li>Web Technologies & Backend Engineering</li>
+                </ul>
+            </div>
+
+            <!-- PROFESSIONAL PHILOSOPHY -->
+            <div class="profile-section">
+                <h3>Professional Philosophy</h3>
+                <p>
+                    “Technology should empower, scale, and protect. Security is not an afterthought — it is the foundation.”
+                </p>
+            </div>
+
+            <!-- BACK TO HOME LINK -->
+            <a href="../index.html" class="back-link">← Back to VaZi Home</a>
+
         </div>
-    </main>
+    </div>
 
 </body>
 </html>
